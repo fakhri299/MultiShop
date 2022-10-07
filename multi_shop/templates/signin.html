@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Sign In Start -->
+<div class="container-fluid" >
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sign In</span></h2>
+    <div class="row px-xl-5">
+        <div class="col-lg-7 mb-5">
+            <div class="contact-form bg-light p-30">
+                <div id="success"></div>
+                <form name="signIn" id="signinForm" novalidate="novalidate">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert-alert-{{ messages.tags }}">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                    {% endif %}     
+                    <span>{{form.email}}</span>
+                    <br>
+                    <span>{{form.password}}</span>
+                    <div>
+                        <br>
+                        <button class="btn btn-primary py-2 px-4" type="submit" id="signinButton">Sign
+                            In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endblock %}
