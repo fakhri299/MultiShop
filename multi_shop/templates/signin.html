@@ -9,22 +9,26 @@
         <div class="col-lg-7 mb-5">
             <div class="contact-form bg-light p-30">
                 <div id="success"></div>
-                <form name="signIn" id="signinForm" novalidate="novalidate">
+                <form name="signIn" id="signinForm" role="form" novalidate="novalidate" method="POST">
                     {% csrf_token %}
-                    {% if messages %}
-                    {% for message in messages %}
-                    <div class="alert-alert-{{ messages.tags }}">
-                        {{message}}
-                    </div>
-                    {% endfor %}
-                    {% endif %}     
-                    <span>{{form.email}}</span>
+
+                             {% if messages %}
+                            {% for message in messages %}
+                            <div class=" alert alert-succes{{ messages.tags }}">
+                                {{message}}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                            <br>
+
+
+                    <span>{{form.username}}</span>
                     <br>
                     <span>{{form.password}}</span>
+                    <br>
                     <div>
-                        <br>
-                        <button class="btn btn-primary py-2 px-4" type="submit" id="signinButton">Sign
-                            In</button>
+                        <input type="submit" value="Sign In" class="btn btn-primary py-2 px-4" id="signup">
                     </div>
                 </form>
             </div>
