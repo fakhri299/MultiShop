@@ -13,17 +13,8 @@
                 <form name="signUp" id="signupForm" role="form" novalidate="novalidate" method="POST">
                     {% csrf_token %} 
                     <br>
-                   {{form.name}}
+                   {{form.as_p}}
                    <br>
-                   {{form.username}}
-                   <br>
-                   {{form.email}}
-                   <br>
-                   {{form.password1}}
-                   <br>
-                   {{form.password2}}
-                   <br>
-
                    {% if form.errors  %}
                    {% for field in form %}
                        {% for error in field.errors %}
