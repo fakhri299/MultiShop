@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
     'product.apps.ProductConfig',
+    'django_extensions',
     
 ]
 

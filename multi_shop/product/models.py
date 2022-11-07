@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
+
 class Customer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
     name=models.CharField(max_length=200,null=True)
@@ -12,10 +14,42 @@ class Customer(models.Model):
         return self.name
 
 
+class Size(models.Model):
+    size=models.CharField(max_length=50,null=True)
+    slug=models.SlugField(max_length=50,unique=True)  
+
+    def __str__(self):  
+        return self.slug 
+
+
+
+class Color(models.Model):
+    name=models.CharField(max_length=50,null=True,blank=True)
+    slug=models.SlugField(max_length=50,unique=True,null=True,blank=True)  
+
+    def __str__(self):
+        return self.slug 
+
+
+class Category(models.Model):
+    name=models.CharField(max_length=50,null=True)
+    slug=models.SlugField(max_length=50,unique=True)
+
+    def __str__(self):
+        return self.slug  
+
+
+
+
+
 class Product(models.Model):
     name=models.CharField(max_length=200,null=True)
     new_price = models.FloatField(null=True)
     old_price=models.FloatField(null=True)
+    size=models.ManyToManyField(Size,related_name='sizes')
+    color=models.ManyToManyField(Color,related_name='colors',null=True)
+    category=models.ManyToManyField(Category,)
+    description=models.TextField(blank=True)
     digital=models.BooleanField(default=False,null=True,blank=False)
     image=models.ImageField(null=True,blank=True)
 
@@ -70,5 +104,8 @@ class ShipingAdress(models.Model):
 
     def __str__(self):
         return self.address
+
+
+
 
 
